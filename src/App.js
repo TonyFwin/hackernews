@@ -80,39 +80,10 @@ const Table = ({ list, pattern, onDismiss }) => (
   </div>
 );
 
-// class Table extends Component {
-//   render() {
-//     const { list, pattern, onDismiss } = this.props;
-//     return (
-//       <div>
-//         {list.filter(isSearched(pattern)).map(item => (
-//           <div key={item.objectId}>
-//             <span>
-//               <a href="{item.url}">{item.title}</a>
-//             </span>
-//             <span> {item.author}</span>
-//             <span> {item.num_comments}</span>
-//             <span> {item.points} </span>
-//             <span>
-//               <Button onClick={() => onDismiss(item.objectId)}>Dismiss</Button>
-//             </span>
-//           </div>
-//         ))}
-//       </div>
-//     );
-//   }
-// }
-
-class Button extends Component {
-  render() {
-    const { onClick, className = '', children } = this.props;
-
-    return (
-      <button onClick={onClick} className={className} type="button">
-        {children}
-      </button>
-    );
-  }
-}
+const Button = ({ onClick, className = '', children }) => (
+  <button onClick={onClick} className={className} type="button">
+    {children}
+  </button>
+);
 
 export default App;

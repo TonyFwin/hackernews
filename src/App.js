@@ -40,9 +40,11 @@ class App extends Component {
   }
 
   onDismiss(id) {
-    const isNotId = item => item.objectId !== id;
-    const updatedList = this.state.list.filter(isNotId);
-    this.setState({ list: updatedList });
+    const isNotId = item => item.objectID !== id;
+    const updatedHits = this.state.result.hits.filter(isNotId);
+    this.setState({
+      result: { ...this.state.result, hits: updatedHits }
+    });
   }
 
   render() {
@@ -88,15 +90,15 @@ const smallColumn = {
 const Table = ({ list, pattern, onDismiss }) => (
   <div className="table">
     {list.filter(isSearched(pattern)).map(item => (
-      <div key={item.objectId} className="table-row">
+      <div key={item.objectID} className="table-row">
         <span style={largeColumn}>
-          <a href="{item.url}">{item.title}</a>
+          <a href={item.url}>{item.title}</a>
         </span>
         <span style={midColumn}> {item.author}</span>
         <span style={smallColumn}> {item.num_comments}</span>
         <span style={smallColumn}> {item.points} </span>
         <span style={smallColumn}>
-          <Button onClick={() => onDismiss(item.objectId)}>Dismiss</Button>
+          <Button onClick={() => onDismiss(item.objectID)}>Dismiss</Button>
         </span>
       </div>
     ))}
